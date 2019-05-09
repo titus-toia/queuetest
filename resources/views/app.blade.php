@@ -27,7 +27,11 @@
                         <li>Speed: {{ $carType->speed }}</li>
                         <li>Revenue: {{ money_format('%.2n', $carType->revenue) }}</li>
                     </ul>
-                    <a href="#" class="btn btn-primary buy">Buy</a>
+                    <form action="{{ url('buy') }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="id" value="{{ $carType->id }}" />
+                        <button type="submit" class="btn btn-primary buy">Buy</button>
+                    </form>
                 </div>
             </div>
         @endforeach
@@ -52,7 +56,11 @@
             <h3>Balance: {{ money_format('%.2n', auth()->user()->balance)  }}</h3>
         </div>
         <h3>Available cars:</h3>
+        @forelse($cars as $car)
 
+        @empty
+            <h4>You currently have no cars available to run.</h4>
+        @endforelse
     </div>
 
 

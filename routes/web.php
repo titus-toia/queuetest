@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'AppController@index');
+Route::any('buy', 'AppController@buy');
 
 
 Auth::routes();

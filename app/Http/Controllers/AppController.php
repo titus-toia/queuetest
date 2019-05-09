@@ -18,4 +18,9 @@ class AppController extends Controller
             'cars' => $cars
         ]);
     }
+
+    public function buy() {
+        $carType = CarType::find(request('id'));
+        var_dump($carType);
+    }
 }
