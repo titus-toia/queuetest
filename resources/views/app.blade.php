@@ -37,30 +37,34 @@
         @endforeach
     </div>
     <div class="content col-9">
-        <div class="links float-right">
-            @auth
-                Welcome, {{ auth()->user()->name }} |
-            @endauth
-            @if (Route::has('login'))
-                    @auth
-                        <a href="{{ url('/') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-            @endif
-            <br />
-            <h3>Balance: {{ money_format('%.2n', auth()->user()->balance)  }}</h3>
-        </div>
+        @foreach($errors->all() as $error)
+            <div class="alert alert-danger">{!! $error !!}</div>
+        @endforeach
         <h3>Available cars:</h3>
         @forelse($cars as $car)
 
         @empty
             <h4>You currently have no cars available to run.</h4>
         @endforelse
+
+        <div class="links float-right">
+            @auth
+                Welcome, {{ auth()->user()->name }} |
+            @endauth
+            @if (Route::has('login'))
+                @auth
+                    <a href="{{ url('/') }}">Home</a>
+                @else
+                    <a href="{{ route('login') }}">Login</a>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}">Register</a>
+                    @endif
+                @endauth
+            @endif
+            <br />
+            <h3>Balance: {{ money_format('%.2n', auth()->user()->balance)  }}</h3>
+        </div>
     </div>
 
 
