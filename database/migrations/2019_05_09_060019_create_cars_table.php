@@ -17,6 +17,7 @@ class CreateCarsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('car_type_id');
+            $table->integer('amount')->default(0);
             $table->boolean('running')->default(0);
             $table->double('progress');
             $table->timestamps();

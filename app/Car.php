@@ -8,7 +8,15 @@ class Car extends Model
 {
     protected $table = 'cars';
 
+    public function user() {
+        return $this->belongsTo('Queuetest/User');
+    }
+
+    public function cartype() {
+        return $this->belongsTo('Queuetest/CarType');
+    }
+
     protected $fillable = [
-        'name', 'image', 'cost', 'speed', 'revenue'
+        'user_id', 'car_type_id', 'amount', 'running', 'progress'
     ];
 }
