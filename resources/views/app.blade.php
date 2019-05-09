@@ -14,11 +14,21 @@
 
 </head>
 <body>
-<div class="container app row">
+<div class="container app">
+    <div class="row">
     <div class="sidebar col-3">
         @foreach($carTypes as $carType)
-            <div class="cartype">
-
+            <div class="cartype card">
+                <img src="{{ asset('img/cartypes/' . $carType->image) }}" class="card-img-top" />
+                <div class="card-body">
+                    <p class="card-title">{{ $carType->name }}</p>
+                    <ul>
+                        <li>Cost: {{ money_format('%.2n', $carType->cost) }}</li>
+                        <li>Speed: {{ $carType->speed }}</li>
+                        <li>Revenue: {{ money_format('%.2n', $carType->revenue) }}</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary buy">Buy</a>
+                </div>
             </div>
         @endforeach
     </div>
@@ -38,11 +48,16 @@
                         @endif
                     @endauth
             @endif
+            <br />
+            <h3>Balance: {{ money_format('%.2n', auth()->user()->balance)  }}</h3>
         </div>
+        <h3>Available cars:</h3>
+
     </div>
 
 
     <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+</div>
 </div>
 </body>
 </html>

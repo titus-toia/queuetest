@@ -8,12 +8,15 @@
 @import '~bootstrap/scss/bootstrap';
 
 html, body {
-    height: 100%;
 }
 div.app {
-    height: 100%;
+    padding: 15px;
     background-color: #eaeaea;
 }
 .cartype {
-
+    margin-bottom: 10px;
+}
+a.buy {
+    width: 150px;
+    text-align: center;
 }

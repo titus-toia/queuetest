@@ -10,6 +10,7 @@ class AppController extends Controller
     public function index() {
         $car_types = CarType::all();
 
+
         return view('app', [
             'carTypes' => $car_types
         ]);
