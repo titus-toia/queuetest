@@ -40,6 +40,11 @@
         @foreach($errors->all() as $error)
             <div class="alert alert-danger">{!! $error !!}</div>
         @endforeach
+        @if(session('success'))
+            <div class="alert alert-success">
+                {!! session('success') !!}
+            </div>
+        @endif
         <h3>Available cars:</h3>
         @forelse($cars as $car)
 

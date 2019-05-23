@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
         $user->name = 'Gica Hagi';
         $user->email = 'gica.hagi@example.com';
         $user->password = \Illuminate\Support\Facades\Hash::make('123qweasd');
-        $user->save();
+        try {
+            $user->save();
+        } catch(\Illuminate\Database\QueryException $e) {}
 
         (new CarType())->fill([
             'name' => 'Alfa Romeo Giulia',

@@ -8,10 +8,18 @@ use Queuetest\Car;
 
 class AppController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index() {
         $user = auth()->user();
         $car_types = CarType::all();
-        $cars = $user->cars();
+        $cars = $user->cars()->with('cartype')->get();
+
+        $car = $cars->first();
+        dd($car->cartype->name);
 
         return view('app', [
             'carTypes' => $car_types,
@@ -27,6 +35,11 @@ class AppController extends Controller
         $diff = $carType->cost - $user->balance;
 
         if($diff <= 0) {
+            $user->cars()->save(new Car([
+                'car_type_id' => $carType->id,
+            ]));
+            return redirect('/')->with('success', "Added a new {$carType->name} to your fleet.");
+
         } else {
             return redirect()
                 ->back()
